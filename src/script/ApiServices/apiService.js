@@ -1,7 +1,6 @@
 // create axios instance
 const instance = axios.create({
-  method: "GET",
-  baseURL: "https://api.themoviedb.org",
+  baseURL: "https://api.themoviedb.org/3",
   headers: {
     accept: "application/json",
     Authorization:
@@ -10,8 +9,8 @@ const instance = axios.create({
 });
 
 // Define api endpoints
-export const getMovies = () => instance.get("/3/movie/popular");
-export const getActors = () => instance.get("/3/person/popular");
-export const getTvShows = () => instance.get("/3/trending/movie/day");
+export const getMovies = (endpoint) => instance.get(endpoint);
+export const getActors = () => instance.get("/person/popular");
+export const getTvShows = () => instance.get("/trending/movie/day");
 
-export default instance;
+
