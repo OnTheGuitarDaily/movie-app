@@ -1,0 +1,28 @@
+body{
+    background-color: black;
+    color: white;
+}
+
+nav button{
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+
+header{
+    background-color: #102C57;
+}
+
+header input{
+    padding: 5px;
+    border: none;
+    border-radius: 12px;
+}
+.upcomingMovies{
+    background-color: #102C57 ;
+}
+
+footer{
+    position: static;
+    bottom: 0;
+}
