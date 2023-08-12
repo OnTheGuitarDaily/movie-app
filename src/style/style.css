@@ -7,7 +7,51 @@ nav button{
     border: none;
     background-color: transparent;
     color: white;
+    
 }
+#menu button{
+    border: none;
+    background-color: transparent;
+    color: white;
+}
+#burgerMenu{
+    z-index: 10;
+}
+
+#menu{
+    padding-top: 100px;
+    background-color: #27374D;
+    height: 50vh;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    transform: translateX(0);
+}
+#menu.show {
+    animation: slidein 0.5s ease-in-out forwards;
+  }
+#menu.hide {
+    animation: slideOut 0.5s ease-in-out forwards;
+  }
+
+@keyframes slidein {
+    from {
+        right: -100%;
+    }
+  
+    to {
+      right: 0%;
+    }
+  }
+@keyframes slideOut {
+    from {
+        right: 0%;
+    }
+  
+    to {
+      right: -100%;
+    }
+  }
 
 header{
     background-color: #102C57;
@@ -25,4 +69,32 @@ header input{
 footer{
     position: static;
     bottom: 0;
+    border-top: 1px solid white;
+}
+#popularMovies, #upcomingMovies, #topMovies{
+    overflow-x: scroll;
+}
+
+.movieCard{
+    position: relative;
+    border: 1px solid white;
+    background-color: #0E2954;
+    opacity: 90%;
+}
+
+.movieCard img{
+    width: 100%;
+}
+.movieCard small{
+    opacity: 60%;
+}
+.movieCard footer{
+    position: absolute;
+    bottom: 2%;
+    border: none;
+}
+
+a{
+    text-decoration: none;
+    color: white;
 }
