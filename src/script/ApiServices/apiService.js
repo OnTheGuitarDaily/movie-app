@@ -1,4 +1,3 @@
-const apiKey = "325af8d6e4b91e2f374e02a26776548c"; // Replace with your actual API key
 
 // create axios instance
 const instance = axios.create({
@@ -6,7 +5,7 @@ const instance = axios.create({
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer 325af8d6e4b91e2f374e02a26776548c"}
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzMjVhZjhkNmU0YjkxZTJmMzc0ZTAyYTI2Nzc2NTQ4YyIsInN1YiI6IjY0ZDYxNjVkZGI0ZWQ2MDBlMmI2NTY3NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.thha-OnxEpkeBWXagT8NzGQNjpV9_9OUKGeQp5v_GXk"}
 });
 
 // Define api endpoints
