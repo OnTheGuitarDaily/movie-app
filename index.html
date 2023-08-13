@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./src/style/style.css" />
-    <title>Document</title>
+    <title>MOVIE</title>
   </head>
   <body>
     <nav class="p-3 d-flex justify-content-between align-items-center">
@@ -33,39 +33,43 @@
         </span>
       </h3>
     </nav>
-    <div id="menu" class="d-flex flex-column col-6 align-items-end px-2 gap-5">
-      <a href="index.html">Movies</a>
+    <div id="menu" class="display col-6">
+      <div  class="d-flex flex-column align-items-end px-4 gap-5">
+        <a href="index.html">Movies</a>
       <a href="tvShows.html">TV Shows</a>
       <a href="actors.html">Actors</a>
+      </div>
     </div>
     <header class=" pb-4 d-flex justify-content-center flex-column align-items-center">
       <div class="p-4 col-10">
         <h1>welcome</h1>
         <p>Millions of movies, TV shows and people to discover <br> Explore now <br> Let's go !</p>
       </div>
-      <input type="text" placeholder="Search for a movie,tv show, person..." class="col-10">
+      <input type="text" id="searchInput" placeholder="Search for a movie,tv show, person..." class="col-10">
+      <div id="searchDiv" class="display col-11 mt-3"></div>
     </header>
+<main>
+  <section class=" mx-3 py-3">
+    <h1>What's Popular</h1>
+    <div id="popularMovies" class="d-flex gap-5 p-3"></div>
+  </section>
 
-    <section class=" mx-3 py-3">
-        <h1>What's Popular</h1>
-        <div id="popularMovies" class="d-flex gap-5 p-3"></div>
-    </section>
-    
-    <section class="my-4 p-3 pb-5 upcomingMovies">
-        <h1>Upcoming movies</h1>
-        <div id="upcomingMovies" class="d-flex gap-5 p-3"></div>
-    </section>
-    
-    <section class="mt-4 mx-3 mb-5">
-        <h1>Top Rated</h1>
-        <div id="topMovies" class="d-flex gap-5 p-3"></div>
-    </section>
-    
+  <section class="my-4 p-3 pb-5 upcomingMovies">
+      <h1>Upcoming movies</h1>
+      <div id="upcomingMovies" class="d-flex gap-5 p-3"></div>
+  </section>
+
+  <section class="mt-4 mx-3 mb-5">
+      <h1>Top Rated</h1>
+      <div id="topMovies" class="d-flex gap-5 p-3"></div>
+  </section>
+</main>
 
     <footer class="col-12 d-flex justify-content-center">
         <p>© All rights reserved.</p>
     </footer>
     <script src="./node_modules/axios/dist/axios.js"></script>
     <script type="module" src="./src/script/script.js"></script>
+    <script src="./1.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import { getMovies } from "../script/ApiServices/apiService.js";
+import { getMovies, search } from "../script/ApiServices/apiService.js";
 
 async function fetchData() {
   try {
@@ -17,7 +17,6 @@ async function fetchData() {
     const resImg = await getMovies("/configuration")
     const dataImg = resImg.data.images
     console.log(dataImg)
-    
     displayMovies(dataMovies, dataTopMovies, dataUpcomingMovies, dataImg);
     
   } catch (error) {
@@ -85,16 +84,73 @@ movieCards.forEach((card) => {
 
 fetchData();
 
+async function performSearch() {
+  try {
+    const searchInput = document.getElementById('searchInput').value
+    const resSearch = await search('/search/movie', searchInput);
+    const dataSearch = resSearch.data.results;
+    console.log('search', dataSearch);
+
+    const resImg = await getMovies("/configuration");
+    const dataImg = resImg.data.images;
+
+    searchItems(dataSearch, dataImg)
+  } catch (error) {
+    console.error("Error:", error);
+  }
+}
+
+function searchItems(dataSearch , dataImg) {
+  const searchInput = document.getElementById('searchInput').value.toLowerCase();
+  const filteredData = dataSearch.filter(item => item.title.toLowerCase().includes(searchInput));
+  const imgUrl = dataImg.base_url + "original"
+  const searchDiv = document.getElementById('searchDiv');
+  if(searchInput.length > 0){
+    console.log(filteredData)
+    searchDiv.classList.remove('display')
+    searchDiv.innerHTML = filteredData.map(
+      (item) => `
+        <div class="searchResult col-11 my-3 d-flex align-items-center">
+          <img src="${imgUrl + item.poster_path}" alt="oster">
+          <div class="col-8 mx-2">
+            <p>${item.title}</p>
+          </div>
+        </div>
+      `
+    ).join('');
+  } else if (searchInput.length === 0) {
+    searchDiv.classList.add('display')
+    searchDiv.innerHTML = '';
+  } 
+   if (filteredData.length === 0) { 
+    searchDiv.innerHTML= `<h1>No results</h1>`
+    searchDiv.style.height = 'auto'
+  }
+
+  const searchResult = document.querySelectorAll('.searchResult');
+  searchResult.forEach((card) => {
+    card.addEventListener('click', () => {
+      window.location.href = 'moviePage.html';
+    });
+  });
+
+}
+
+document.getElementById('searchInput').addEventListener('input', () => {
+  performSearch(); 
+});
+
+
 const burgerMenu = document.getElementById('burgerMenu')
 let isMenuOpen = false;
 burgerMenu.addEventListener('click', () => {
   isMenuOpen = !isMenuOpen
   if(isMenuOpen){
     menu.classList.add('show');
-    menu.classList.remove('hide');
+    menu.classList.remove('display');
   } else {
     menu.classList.remove('show');
-    menu.classList.add('hide');
+    menu.classList.add('display');
   } 
 })
 

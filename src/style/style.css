@@ -17,8 +17,20 @@ nav button{
 #burgerMenu{
     z-index: 10;
 }
-
+#searchDiv{
+    height: 30vh;
+    overflow-y: scroll;
+    background-color: #EEE0C9;
+    color: black;
+    border-radius: 10px;
+    padding: 10px;
+    
+}
+#searchDiv img {
+    width: 20%;
+}
 #menu{
+    z-index: 5;
     padding-top: 100px;
     background-color: #27374D;
     height: 50vh;
@@ -27,11 +39,12 @@ nav button{
     right: -100%;
     transform: translateX(0);
 }
+
+.display{
+    display: none;
+}
 #menu.show {
     animation: slidein 0.5s ease-in-out forwards;
-  }
-#menu.hide {
-    animation: slideOut 0.5s ease-in-out forwards;
   }
 
 @keyframes slidein {
@@ -43,15 +56,7 @@ nav button{
       right: 0%;
     }
   }
-@keyframes slideOut {
-    from {
-        right: 0%;
-    }
-  
-    to {
-      right: -100%;
-    }
-  }
+
 
 header{
     background-color: #102C57;
