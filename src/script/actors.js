@@ -1,4 +1,4 @@
-import { getActors } from "../script/ApiServices/apiService.js";
+import { getData } from "../script/ApiServices/apiService.js";
 
 
 const burgerMenu = document.getElementById('burgerMenu')
@@ -16,11 +16,11 @@ burgerMenu.addEventListener('click', () => {
 
 async function fetchData() {
     try { 
-      const resTvShow = await getActors('/person/popular')
+      const resTvShow = await getData('/person/popular')
       const dataActor = resTvShow.data.results
       console.log(dataActor)
 
-      const resImg = await getActors("/configuration")
+      const resImg = await getData("/configuration")
       const dataImg = resImg.data.images
       console.log(dataImg)
 
@@ -53,7 +53,7 @@ function displayTvShow(dataActor,dataImg){
 movieCards.forEach((card) => {
   card.addEventListener('click', () => {
     const actorId = card.getAttribute('data-actor-id')
-    localStorage.setItem('id', actorId)
+    localStorage.setItem('actorId', actorId)
     window.location.href = 'actorPage.html';
   });
 });

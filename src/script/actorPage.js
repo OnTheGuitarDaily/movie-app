@@ -1,64 +1,73 @@
-import { getMovies } from "../script/ApiServices/apiService.js";
+import { getData } from "../script/ApiServices/apiService.js";
 
 async function fetchData() {
     try {
-        const id = localStorage.getItem('id')
+        const id = localStorage.getItem('actorId')
 
-        const resMovie = await getMovies(`/tv/${id}`);
-        const dataTv  = resMovie.data;
-        console.log('tv',dataTv);
+        const resActor = await getData(`/person/${id}`);
+        const dataActor  = resActor.data;
+        console.log('actor',dataActor);
 
-        const resCast = await getMovies(`/tv/${id}/credits`);
-        const dataCast  = resCast.data.cast;
-        console.log('cast',dataCast);
+        const resMovieCredits = await getData(`/person/${id}/movie_credits`);
+        const dataMovieCredits  = resMovieCredits.data.cast;
+
+        const resTvCredits = await getData(`/person/${id}/tv_credits`);
+        const dataTvCredits  = resTvCredits.data.cast;
   
-        const resImg = await getMovies("/configuration")
+        const resImg = await getData("/configuration")
         const dataImg = resImg.data.images
         console.log(dataImg)
       
-        displayMovie(dataTv,dataCast,dataImg)
+        displayMovie(dataActor,dataMovieCredits,dataTvCredits,dataImg)
 
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
-function displayMovie(dataTv, dataCast, dataImg){
+function displayMovie(dataActor, dataMovieCredits, dataTvCredits, dataImg){
     const infoDiv = document.querySelector('main')
     const imgUrl = dataImg.base_url + "original"
     infoDiv.innerHTML = `
     <div class="col-12 movieCard">
-        <img src="${imgUrl + dataTv.poster_path}">
+        <img src="${imgUrl + dataActor.profile_path}">
     </div>
     <div class="text col-12 pt-4 px-3">
-            <h1>${dataTv.name}</h1>
-            <small>${dataTv.first_air_date}</small><br>
-            <i>"${dataTv.tagline}"</i>
-            <h2 class="my-3">Overview</h2>
-            <p>${dataTv.overview}</p>
-            <small>Seasons: ${dataTv.number_of_seasons}</small>
-            <h2 class="my-3">Cast</h2>
-            <div id="cast" class="d-flex gap-2 col-12 my-3 px-2"></div>
+            <h1>${dataActor.name}</h1>
+            <small>Born: ${dataActor.place_of_birth}<br>${dataActor.birthday}</small><br>
+            <h2 class="my-3">biography</h2>
+            <p>${dataActor.biography}</p>
+            <div class="my-5">
+            <h2 class="my-3">Credits</h2>
+                <hr>
+                <h4>Movies:</h4>
+                <list id="movie"></list>
+                <hr>
+                <h4>Tv Shows:</h4>
+                <list id="tv"></list>
+            </div>
      </div>
      
     `
-
-    const castDiv = infoDiv.querySelector('#cast')
-    castDiv.innerHTML = dataCast.map((actor) => `
-    
-    <div class="actorCard col-5">
-        <img src="${imgUrl + actor.profile_path}">
-        <p>${actor.name}</p>
-        <small>${actor.character}</small>
-    </div>
+    const movieCreditDiv = infoDiv.querySelector('#movie')
+    const TvCreditDiv = infoDiv.querySelector('#tv')
+    const popularMovies = dataMovieCredits.filter(item => item.popularity > 40)
+    const popularTv= dataTvCredits.filter(item => item.popularity > 40)
+    console.log('movie',popularMovies)
+    console.log('tv',popularTv)
+    movieCreditDiv.innerHTML = popularMovies.map((movie) => `
+    <li>
+       ${movie.title}  /as/  ${movie.character}
+    </li>
     `).join('')
 
-    const actorDiv = castDiv.querySelectorAll('.actorCard')
-    actorDiv.forEach(actor => {
-        actor.addEventListener('click', () => {
-          window.location.href = 'actorPage.html'
-        });
-      });
+
+    TvCreditDiv.innerHTML = popularTv.map((tv) => `
+    <li>
+       ${tv.name}  /as/  ${tv.character}
+    </li>
+    `).join('')
+
 }
 
 

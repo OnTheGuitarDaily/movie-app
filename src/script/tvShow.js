@@ -1,4 +1,4 @@
-import { getTvShows } from "../script/ApiServices/apiService.js";
+import { getData } from "../script/ApiServices/apiService.js";
 
 
 const burgerMenu = document.getElementById('burgerMenu')
@@ -16,11 +16,11 @@ burgerMenu.addEventListener('click', () => {
 
 async function fetchData() {
     try { 
-      const resTvShow = await getTvShows('/tv/top_rated')
+      const resTvShow = await getData('/tv/top_rated')
       const dataTvShow = resTvShow.data.results
       console.log(dataTvShow)
 
-      const resImg = await getTvShows("/configuration")
+      const resImg = await getData("/configuration")
       const dataImg = resImg.data.images
       console.log(dataImg)
 
@@ -54,7 +54,7 @@ function displayTvShow(dataTvShow,dataImg){
 movieCards.forEach((card) => {
   card.addEventListener('click', () => {
     const tvShowId = card.getAttribute('data-tvShow-id')
-    localStorage.setItem('id', tvShowId)
+    localStorage.setItem('tvId', tvShowId)
     window.location.href = 'tvShowPage.html';
   });
 });

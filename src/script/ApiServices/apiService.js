@@ -15,9 +15,8 @@ const instance = axios.create({
   
 
 // Define api endpoints
-export const getMovies = (endpoint) => instance.get(endpoint);
-export const getActors = (endpoint) => instance.get(endpoint);
-export const getTvShows = (endpoint) => instance.get(endpoint);
+export const getData = (endpoint) => instance.get(endpoint);
+
 export const search = (endpoint, searchQuery) => {
   instance.defaults.params.query = searchQuery
   return instance.get(endpoint);

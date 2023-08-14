@@ -1,20 +1,20 @@
-import { getMovies, search } from "../script/ApiServices/apiService.js";
+import { getData, search } from "../script/ApiServices/apiService.js";
 
 async function fetchData() {
   try {
-    const resMovies = await getMovies("/movie/popular");
+    const resMovies = await getData("/movie/popular");
     const dataMovies = resMovies.data.results;
     console.log("Popular:", dataMovies);
 
-    const resTopMovies = await getMovies("/movie/top_rated");
+    const resTopMovies = await getData("/movie/top_rated");
     const dataTopMovies = resTopMovies.data.results;
     console.log("Top movies:", dataTopMovies);
 
-    const resUpcomingMovies = await getMovies("/movie/upcoming");
+    const resUpcomingMovies = await getData("/movie/upcoming");
     const dataUpcomingMovies = resUpcomingMovies.data.results;
     console.log("Upcoming:", dataUpcomingMovies);
 
-    const resImg = await getMovies("/configuration")
+    const resImg = await getData("/configuration")
     const dataImg = resImg.data.images
     console.log(dataImg)
     displayMovies(dataMovies, dataTopMovies, dataUpcomingMovies, dataImg);
@@ -78,7 +78,7 @@ const movieCards = document.querySelectorAll('.movieCard');
 movieCards.forEach((card) => {
   card.addEventListener('click', () => {
     const movieId = card.getAttribute('data-movie-id')
-    localStorage.setItem('id', movieId)
+    localStorage.setItem('movieId', movieId)
     window.location.href = 'moviePage.html';
   });
 });
@@ -93,7 +93,7 @@ async function performSearch() {
     const dataSearch = resSearch.data.results;
     console.log('search', dataSearch);
 
-    const resImg = await getMovies("/configuration");
+    const resImg = await getData("/configuration");
     const dataImg = resImg.data.images;
 
     searchItems(dataSearch, dataImg)
@@ -112,7 +112,7 @@ function searchItems(dataSearch , dataImg) {
     searchDiv.classList.remove('display')
     searchDiv.innerHTML = filteredData.map(
       (item) => `
-        <div class="searchResult col-11 my-3 d-flex align-items-center">
+        <div class="searchResult col-11 my-3 d-flex align-items-center" data-movie-id="${item.id}">
           <img src="${imgUrl + item.poster_path}" alt="oster">
           <div class="col-8 mx-2">
             <p>${item.title}</p>
@@ -131,8 +131,10 @@ function searchItems(dataSearch , dataImg) {
 
   const searchResult = document.querySelectorAll('.searchResult');
   searchResult.forEach((card) => {
+    const searchMovieId = card.getAttribute('data-movie-id')
     card.addEventListener('click', () => {
       window.location.href = 'moviePage.html';
+      localStorage.setItem('movieId', searchMovieId)
     });
   });
 

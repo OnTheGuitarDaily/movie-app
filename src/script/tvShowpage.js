@@ -1,18 +1,18 @@
-import { getMovies } from "../script/ApiServices/apiService.js";
+import { getData } from "../script/ApiServices/apiService.js";
 
 async function fetchData() {
     try {
-        const id = localStorage.getItem('id')
+        const id = localStorage.getItem('tvId')
 
-        const resMovie = await getMovies(`/tv/${id}`);
+        const resMovie = await getData(`/tv/${id}`);
         const dataTv  = resMovie.data;
         console.log('tv',dataTv);
 
-        const resCast = await getMovies(`/tv/${id}/credits`);
+        const resCast = await getData(`/tv/${id}/credits`);
         const dataCast  = resCast.data.cast;
         console.log('cast',dataCast);
   
-        const resImg = await getMovies("/configuration")
+        const resImg = await getData("/configuration")
         const dataImg = resImg.data.images
         console.log(dataImg)
       
@@ -46,7 +46,7 @@ function displayMovie(dataTv, dataCast, dataImg){
     const castDiv = infoDiv.querySelector('#cast')
     castDiv.innerHTML = dataCast.map((actor) => `
     
-    <div class="actorCard col-5">
+    <div class="actorCard col-5" data-actor-id="${actor.id}">
         <img src="${imgUrl + actor.profile_path}">
         <p>${actor.name}</p>
         <small>${actor.character}</small>
@@ -55,8 +55,10 @@ function displayMovie(dataTv, dataCast, dataImg){
 
     const actorDiv = castDiv.querySelectorAll('.actorCard')
     actorDiv.forEach(actor => {
+      const actorId = actor.getAttribute('data-actor-id')
         actor.addEventListener('click', () => {
           window.location.href = 'actorPage.html'
+          localStorage.setItem('actorId', actorId)
         });
       });
 }
