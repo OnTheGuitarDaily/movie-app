@@ -1,0 +1,25 @@
+/* *{
+    border: 1px dashed white;
+} */
+.text{
+    position: absolute;
+    top: 80%;
+    opacity: 85%;
+    background-color: black;
+    border-top-left-radius:20px ;
+    border-top-right-radius:20px ;
+}
+.actorCard{
+    position: relative;
+}
+.actorCard img{
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+#cast{
+    overflow-x: scroll;
+}
+.actorCard small{
+    opacity: 70%;
+}

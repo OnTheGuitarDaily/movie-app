@@ -72,8 +72,6 @@ header input{
 }
 
 footer{
-    position: static;
-    bottom: 0;
     border-top: 1px solid white;
 }
 #popularMovies, #upcomingMovies, #topMovies{
@@ -82,14 +80,13 @@ footer{
 
 .movieCard{
     position: relative;
-    border: 1px solid white;
-    background-color: #0E2954;
     opacity: 90%;
 }
 
 .movieCard img{
     width: 100%;
 }
+
 .movieCard small{
     opacity: 60%;
 }

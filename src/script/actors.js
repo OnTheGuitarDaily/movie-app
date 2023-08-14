@@ -17,32 +17,32 @@ burgerMenu.addEventListener('click', () => {
 async function fetchData() {
     try { 
       const resTvShow = await getActors('/person/popular')
-      const dataTvShow = resTvShow.data.results
-      console.log(dataTvShow)
+      const dataActor = resTvShow.data.results
+      console.log(dataActor)
 
       const resImg = await getActors("/configuration")
       const dataImg = resImg.data.images
       console.log(dataImg)
 
-        displayTvShow(dataTvShow,dataImg)
+        displayTvShow(dataActor,dataImg)
 
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
-function displayTvShow(dataTvShow,dataImg){
+function displayTvShow(dataActor,dataImg){
     const tvShowDiv = document.querySelector('main');
     const imgUrl = dataImg.base_url + "original"
-    tvShowDiv.innerHTML = dataTvShow.map((tvShow) => `
+    tvShowDiv.innerHTML = dataActor.map((actor) => `
     
-    <div class="col-5 movieCard">
-      <img src="${imgUrl + tvShow.profile_path}">
+    <div class="col-5 movieCard" data-actor-id="${actor.id}">
+      <img src="${imgUrl + actor.profile_path}">
       <div class="pb-4 px-2 mt-2">
-        <p>${tvShow.name}</p>
+        <p>${actor.name}</p>
         <footer class="d-flex justify-content-between col-11">
           <span style="color: white">
-          <i class="fa-solid fa-star"></i>   ${tvShow.popularity}
+          <i class="fa-solid fa-star"></i>   ${actor.popularity}
           </span>
         </footer>
       </div>
@@ -52,6 +52,8 @@ function displayTvShow(dataTvShow,dataImg){
     const movieCards = document.querySelectorAll('.movieCard');
 movieCards.forEach((card) => {
   card.addEventListener('click', () => {
+    const actorId = card.getAttribute('data-actor-id')
+    localStorage.setItem('id', actorId)
     window.location.href = 'actorPage.html';
   });
 });

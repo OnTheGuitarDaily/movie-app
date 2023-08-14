@@ -28,7 +28,7 @@ function displayMovies(dataMovies, dataTopMovies, dataUpcomingMovies, dataImg) {
   const popularMoviesDiv = document.querySelector('#popularMovies');
   const imgUrl = dataImg.base_url + "original"
   popularMoviesDiv.innerHTML = dataMovies.map((movie) => `
-   <div class="col-8 movieCard">
+   <div class="col-8 movieCard" data-movie-id="${movie.id}">
       <img src="${imgUrl + movie.poster_path}">
       <div class="pb-4 px-2 mt-2">
         <p>${movie.title}</p>
@@ -44,7 +44,7 @@ function displayMovies(dataMovies, dataTopMovies, dataUpcomingMovies, dataImg) {
 
   const upcomingMovies = document.querySelector('#upcomingMovies');
   upcomingMovies.innerHTML = dataUpcomingMovies.map((movie) => `
-  <div class="col-8 movieCard">
+  <div class="col-8 movieCard" data-movie-id="${movie.id}">
   <img src="${imgUrl + movie.poster_path}">
   <div class="pb-4 px-2 mt-2">
     <p>${movie.title}</p>
@@ -60,7 +60,7 @@ function displayMovies(dataMovies, dataTopMovies, dataUpcomingMovies, dataImg) {
 
   const topMovies = document.querySelector('#topMovies');
   topMovies.innerHTML = dataTopMovies.map((movie) => `
-  <div class="col-8 movieCard">
+  <div class="col-8 movieCard" data-movie-id="${movie.id}">
   <img src="${imgUrl + movie.poster_path}">
   <div class="pb-4 px-2 mt-2">
     <p>${movie.title}</p>
@@ -77,6 +77,8 @@ function displayMovies(dataMovies, dataTopMovies, dataUpcomingMovies, dataImg) {
 const movieCards = document.querySelectorAll('.movieCard');
 movieCards.forEach((card) => {
   card.addEventListener('click', () => {
+    const movieId = card.getAttribute('data-movie-id')
+    localStorage.setItem('id', movieId)
     window.location.href = 'moviePage.html';
   });
 });
