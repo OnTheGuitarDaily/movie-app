@@ -32,30 +32,36 @@
           <i class="fa-solid fa-bars fa-2xl"></i>
         </span>
       </h3>
-      <ul class="gap-5 justify-content-center align-items-center">
+      <ul class="gap-5 justify-content-center align-items-center px-5">
         <li><a href="./index.html">Movies</a></li>
         <li><a href="./tvShows.html">Tv Shows</a></li>
         <li><a href="./actors.html">Actors</a></li>
       </ul>
     </nav>
     <div id="menu" class="display col-6">
-      <div  class="d-flex flex-column align-items-end px-4 gap-5">
+      <div class="d-flex flex-column align-items-end px-4 gap-5">
         <a href="index.html">Movies</a>
-      <a href="tvShows.html">TV Shows</a>
-      <a href="actors.html">Actors</a>
+        <a href="tvShows.html">TV Shows</a>
+        <a href="actors.html">Actors</a>
       </div>
     </div>
     <div class="col-12 d-flex justify-content-center my-3 search">
-      <input type="text" id="searchInput" placeholder="Search for a movie,tv show, person..." class="col-10">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for a movie,tv show, person..."
+        class="col-10"
+      />
       <div id="searchDiv" class="display col-10 mt-3"></div>
     </div>
-<main class="d-flex gap-3 justify-content-around col-10 mx-auto flex-wrap"></main>
+    <main
+      class="d-flex gap-3 justify-content-around col-10 mx-auto flex-wrap"
+    ></main>
 
     <footer class="col-12 d-flex justify-content-center mt-5">
-        <p>© All rights reserved.</p>
+      <p>© All rights reserved.</p>
     </footer>
     <script src="./node_modules/axios/dist/axios.js"></script>
     <script type="module" src="./src/script/tvShow.js"></script>
-   
   </body>
 </html>
