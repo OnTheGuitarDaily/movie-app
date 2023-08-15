@@ -28,48 +28,48 @@ function displayMovies(dataMovies, dataTopMovies, dataUpcomingMovies, dataImg) {
   const popularMoviesDiv = document.querySelector('#popularMovies');
   const imgUrl = dataImg.base_url + "original"
   popularMoviesDiv.innerHTML = dataMovies.map((movie) => `
-   <div class="col-8 movieCard" data-movie-id="${movie.id}">
-      <img src="${imgUrl + movie.poster_path}">
+   <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2 movieCard" data-movie-id="${movie.id}">
+      <img src="${imgUrl + movie.poster_path}" alt="IMG">
       <div class="pb-4 px-2 mt-2">
         <p>${movie.title}</p>
-        <footer class="d-flex justify-content-between col-11">
+        <footer class="d-flex justify-content-between col-12">
           <small>${movie.release_date}</small>
-          <span style="color: white">
+        </footer>
+        <span>
           <i class="fa-solid fa-star"></i>   ${movie.vote_average}
           </span>
-        </footer>
       </div>
    </div>
   `).join('');
 
   const upcomingMovies = document.querySelector('#upcomingMovies');
   upcomingMovies.innerHTML = dataUpcomingMovies.map((movie) => `
-  <div class="col-8 movieCard" data-movie-id="${movie.id}">
-  <img src="${imgUrl + movie.poster_path}">
+  <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2 movieCard" data-movie-id="${movie.id}">
+  <img src="${imgUrl + movie.poster_path}" alt="IMG">
   <div class="pb-4 px-2 mt-2">
     <p>${movie.title}</p>
-    <footer class="d-flex justify-content-between col-11">
+    <footer class="d-flex justify-content-between col-12">
       <small>${movie.release_date}</small>
-      <span style="color: white">
+    </footer>
+    <span>
       <i class="fa-solid fa-star"></i>   ${movie.vote_average}
       </span>
-    </footer>
   </div>
 </div>
   `).join('');
 
   const topMovies = document.querySelector('#topMovies');
   topMovies.innerHTML = dataTopMovies.map((movie) => `
-  <div class="col-8 movieCard" data-movie-id="${movie.id}">
-  <img src="${imgUrl + movie.poster_path}">
+  <div class="col-5 col-sm-4 col-md-3 col-lg-2 col-xl-2 movieCard" data-movie-id="${movie.id}">
+  <img src="${imgUrl + movie.poster_path}" alt="IMG">
   <div class="pb-4 px-2 mt-2">
     <p>${movie.title}</p>
-    <footer class="d-flex justify-content-between col-11">
+    <footer class="d-flex justify-content-between col-12">
       <small>${movie.release_date}</small>
-      <span style="color: white">
-      <i class="fa-solid fa-star"></i>   ${movie.vote_average}
-      </span>
     </footer>
+    <span>
+          <i class="fa-solid fa-star"></i>   ${movie.vote_average}
+          </span>
   </div>
 </div>
   `).join('');
@@ -112,8 +112,8 @@ function searchItems(dataSearch , dataImg) {
     searchDiv.classList.remove('display')
     searchDiv.innerHTML = filteredData.map(
       (item) => `
-        <div class="searchResult col-11 my-3 d-flex align-items-center" data-movie-id="${item.id}">
-          <img src="${imgUrl + item.poster_path}" alt="oster">
+        <div class="searchResult col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5 my-3 d-flex align-items-center" data-movie-id="${item.id}">
+          <img src="${imgUrl + item.poster_path}" alt="IMG">
           <div class="col-8 mx-2">
             <p>${item.title}</p>
           </div>
@@ -126,7 +126,6 @@ function searchItems(dataSearch , dataImg) {
   } 
    if (filteredData.length === 0) { 
     searchDiv.innerHTML= `<h1>No results</h1>`
-    searchDiv.style.height = 'auto'
   }
 
   const searchResult = document.querySelectorAll('.searchResult');
@@ -158,3 +157,7 @@ burgerMenu.addEventListener('click', () => {
   } 
 })
 
+const logo = document.getElementById ('logo')
+logo.addEventListener('click', () => {
+  window.location.href = 'index.html';
+})

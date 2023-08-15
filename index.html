@@ -24,7 +24,7 @@
     <nav class="p-3 d-flex justify-content-between align-items-center">
       <h1 id="logo">
         <span style="color: white">
-          <i class="fa-thin fa-film"></i> Movies
+          <i class="fa-brands fa-google-play"></i> Movies
         </span>
       </h1>
       <h3 id="burgerMenu">
@@ -32,6 +32,11 @@
           <i class="fa-solid fa-bars fa-2xl"></i>
         </span>
       </h3>
+      <ul class="gap-5 justify-content-center align-items-center">
+        <li><a href="./index.html">Movies</a></li>
+        <li><a href="./tvShows.html">Tv Shows</a></li>
+        <li><a href="./actors.html">Actors</a></li>
+      </ul>
     </nav>
     <div id="menu" class="display col-6">
       <div  class="d-flex flex-column align-items-end px-4 gap-5">
@@ -45,30 +50,32 @@
         <h1>welcome</h1>
         <p>Millions of movies, TV shows and people to discover <br> Explore now <br> Let's go !</p>
       </div>
-      <input type="text" id="searchInput" placeholder="Search for a movie,tv show, person..." class="col-10">
-      <div id="searchDiv" class="display col-11 mt-3"></div>
+      <div class="col-12 d-flex justify-content-center my-3 search">
+        <input type="text" id="searchInput" placeholder="Search for a movie,tv show, person..." class="col-10">
+        <div id="searchDiv" class="display col-10 mt-3"></div>
+      </div>
     </header>
 <main>
   <section class=" mx-3 py-3">
     <h1>What's Popular</h1>
-    <div id="popularMovies" class="d-flex gap-5 p-3"></div>
+    <div id="popularMovies" class="d-flex gap-4 p-2"></div>
   </section>
 
   <section class="my-4 p-3 pb-5 upcomingMovies">
       <h1>Upcoming movies</h1>
-      <div id="upcomingMovies" class="d-flex gap-5 p-3"></div>
+      <div id="upcomingMovies" class="d-flex gap-4 p-2"></div>
   </section>
 
   <section class="mt-4 mx-3 mb-5">
       <h1>Top Rated</h1>
-      <div id="topMovies" class="d-flex gap-5 p-3"></div>
+      <div id="topMovies" class="d-flex gap-4 p-2"></div>
   </section>
 </main>
 
     <footer class="col-12 d-flex justify-content-center">
         <p>© All rights reserved.</p>
     </footer>
-    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="./node_modules/axios/dist/axios.js"></script>
     <script type="module" src="./src/script/script.js"></script>
   </body>
 </html>
