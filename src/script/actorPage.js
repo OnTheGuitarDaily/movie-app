@@ -18,14 +18,14 @@ async function fetchData() {
         const dataImg = resImg.data.images
         console.log(dataImg)
       
-        displayMovie(dataActor,dataMovieCredits,dataTvCredits,dataImg)
+        displayActos(dataActor,dataMovieCredits,dataTvCredits,dataImg)
 
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
-function displayMovie(dataActor, dataMovieCredits, dataTvCredits, dataImg){
+function displayActos(dataActor, dataMovieCredits, dataTvCredits, dataImg){
     const infoDiv = document.querySelector('main')
     const imgUrl = dataImg.base_url + "original"
     infoDiv.innerHTML = `

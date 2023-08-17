@@ -20,14 +20,14 @@ async function fetchData() {
         const dataImg = resImg.data.images
         console.log(dataImg)
       
-        displayMovie(dataTv,dataCast,dataTvTrailer,dataImg)
+        displayTvShow(dataTv,dataCast,dataTvTrailer,dataImg)
 
     } catch (error) {
       console.error("Error:", error);
     }
   }
 
-function displayMovie(dataTv, dataCast, dataTvTrailer, dataImg){
+function displayTvShow(dataTv, dataCast, dataTvTrailer, dataImg){
     const infoDiv = document.querySelector('main')
     const imgUrl = dataImg.base_url + "original"
     infoDiv.innerHTML = `
